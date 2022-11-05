@@ -6,32 +6,34 @@ using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
 {
-    public Brick BrickPrefab;
     public int LineCount = 6;
     public Rigidbody Ball;
-
     public Text ScoreText;
     public GameObject GameOverText;
-    
+
+    [SerializeField] private Brick _brickPrefab;
+    [SerializeField] private float _lineLength = 4f;
+    [SerializeField] private Vector3 startFirstLinePosition = new Vector3(-1.5f, -2.5f, 0);
+
     private bool m_Started = false;
     private int m_Points;
-    
     private bool m_GameOver = false;
+    private float lineStep = 0.3f;
 
-    
-    // Start is called before the first frame update
-    void Start()
+    const float step = 0.6f;
+
+    private void Start()
     {
-        const float step = 0.6f;
-        int perLine = Mathf.FloorToInt(4.0f / step);
+        
+        int perLine = Mathf.FloorToInt(_lineLength / step);
         
         int[] pointCountArray = new [] {1,1,2,2,5,5};
         for (int i = 0; i < LineCount; ++i)
         {
             for (int x = 0; x < perLine; ++x)
             {
-                Vector3 position = new Vector3(-1.5f + step * x, 2.5f + i * 0.3f, 0);
-                var brick = Instantiate(BrickPrefab, position, Quaternion.identity);
+                Vector3 position = startFirstLinePosition + new Vector3(step * x, i * lineStep, 0);
+                var brick = Instantiate(_brickPrefab, position, Quaternion.identity);
                 brick.PointValue = pointCountArray[i];
                 brick.onDestroyed.AddListener(AddPoint);
             }
