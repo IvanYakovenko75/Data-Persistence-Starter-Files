@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Brick _brickPrefab;
     [SerializeField] private float _lineLength = 4f;
-    [SerializeField] private Vector3 startFirstLinePosition = new Vector3(-1.5f, -2.5f, 0);
+    [SerializeField] private Vector3 startFirstLinePosition = new Vector3(-1.5f, 2f, 0);
 
     private bool m_Started = false;
     private bool m_GameOver = false;
