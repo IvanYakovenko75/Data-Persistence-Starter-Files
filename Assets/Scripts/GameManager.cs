@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public int LineCount = 6;
     public Rigidbody Ball;
@@ -16,9 +16,9 @@ public class MainManager : MonoBehaviour
     [SerializeField] private Vector3 startFirstLinePosition = new Vector3(-1.5f, -2.5f, 0);
 
     private bool m_Started = false;
-    private int m_Points;
     private bool m_GameOver = false;
     private float lineStep = 0.3f;
+    private int m_Points;
 
     const float step = 0.6f;
 
