@@ -5,6 +5,14 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+
+    [SerializeField] private float _minMagnitude = 3.0f;
+    [SerializeField] private float _coefVelosity = 3.0f;
+    [SerializeField] private float _angularDeviation = 0.1f;
+    [SerializeField] private float _upSpeedModifier = 0.5f;
+    [SerializeField] private float _downSpeedModifier = 0.5f;
+    [SerializeField] private float _accelerationModifier = 0.01f;
+
     private Rigidbody m_Rigidbody;
 
     void Start()
@@ -15,20 +23,20 @@ public class Ball : MonoBehaviour
     private void OnCollisionExit(Collision other)
     {
         var velocity = m_Rigidbody.velocity;
-        
-        //after a collision we accelerate a bit
-        velocity += velocity.normalized * 0.01f;
-        
-        //check if we are not going totally vertically as this would lead to being stuck, we add a little vertical force
-        if (Vector3.Dot(velocity.normalized, Vector3.up) < 0.1f)
+
+        //после столкновения немного ускоряемся
+        velocity += velocity.normalized * _accelerationModifier;
+
+        //проверяем, не движемся ли мы полностью вертикально, так как это может привести к застреванию, мы добавляем небольшую вертикальную силу
+        if (Vector3.Dot(velocity.normalized, Vector3.up) < _angularDeviation)
         {
-            velocity += velocity.y > 0 ? Vector3.up * 0.5f : Vector3.down * 0.5f;
+            velocity += velocity.y > 0 ? Vector3.up * _upSpeedModifier : Vector3.down * _downSpeedModifier;
         }
 
         //max velocity
-        if (velocity.magnitude > 3.0f)
+        if (velocity.magnitude > _minMagnitude)
         {
-            velocity = velocity.normalized * 3.0f;
+            velocity = velocity.normalized * _coefVelosity;
         }
 
         m_Rigidbody.velocity = velocity;

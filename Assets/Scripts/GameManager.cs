@@ -75,4 +75,14 @@ public class GameManager : MonoBehaviour
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    //public void StartGame()
+    //{
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    //}
 }

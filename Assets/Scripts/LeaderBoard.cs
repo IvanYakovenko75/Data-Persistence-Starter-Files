@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.IO;
+using UnityEngine.UI;
 
 public class LeaderBoard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+
+    public void Menu()
     {
-        
+        SceneManager.LoadScene(1);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void Start()
     {
-        
+
+    }
+
+    private void Update()
+    {
+
     }
 }
