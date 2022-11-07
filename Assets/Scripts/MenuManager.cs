@@ -34,6 +34,7 @@ public class MenuManager : MonoBehaviour
     public void Game()
     {
         SceneManager.LoadScene(0);
+        //GameSystems.Instance.PlayerScore = 5;
     }
 
     public void LeaderBoard()

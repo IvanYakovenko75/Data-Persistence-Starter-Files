@@ -26,6 +26,18 @@ public class GameManager : MonoBehaviour
     public Button ButtonStartGame;
     public Button ButtonMenu;
 
+
+    private void Start()
+    {
+        CreateField();
+
+    }
+
+    private void Update()
+    {
+        HideButtons();
+    }
+
     public void HideButtons()
     {
         if (m_Started == true & m_Points == 0)
@@ -40,18 +52,6 @@ public class GameManager : MonoBehaviour
             ButtonMenu.gameObject.SetActive(true);
         }
     }
-
-    private void Start()
-    {
-        CreateField();
-
-    }
-
-    private void Update()
-    {
-        HideButtons();
-    }
-
 
     public void CreateField()
     {
