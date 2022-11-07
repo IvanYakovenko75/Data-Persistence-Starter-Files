@@ -18,16 +18,46 @@ public class GameManager : MonoBehaviour
     private bool m_Started = false;
     private bool m_GameOver = false;
     private float lineStep = 0.3f;
+    private float forceModefiler = 2.0f;
     private int m_Points;
 
     const float step = 0.6f;
 
+    public Button ButtonStartGame;
+    public Button ButtonMenu;
+
+    public void HideButtons()
+    {
+        if (m_Started == true & m_Points == 0)
+        {
+            ButtonStartGame.gameObject.SetActive(false);
+            ButtonMenu.gameObject.SetActive(false);
+        }
+
+        if (m_GameOver == true & m_Points > 0)
+        {
+            ButtonStartGame.gameObject.SetActive(true);
+            ButtonMenu.gameObject.SetActive(true);
+        }
+    }
+
     private void Start()
     {
-        
+        CreateField();
+
+    }
+
+    private void Update()
+    {
+        HideButtons();
+    }
+
+
+    public void CreateField()
+    {
         int perLine = Mathf.FloorToInt(_lineLength / step);
-        
-        int[] pointCountArray = new [] {1,1,2,2,5,5};
+
+        int[] pointCountArray = new[] { 1, 1, 2, 2, 5, 5 };
         for (int i = 0; i < LineCount; ++i)
         {
             for (int x = 0; x < perLine; ++x)
@@ -40,31 +70,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (!m_Started)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                m_Started = true;
-                float randomDirection = Random.Range(-1.0f, 1.0f);
-                Vector3 forceDir = new Vector3(randomDirection, 1, 0);
-                forceDir.Normalize();
 
-                Ball.transform.SetParent(null);
-                Ball.AddForce(forceDir * 2.0f, ForceMode.VelocityChange);
-            }
-        }
-        else if (m_GameOver)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-        }
-    }
-
-    void AddPoint(int point)
+    public void AddPoint(int point)
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
@@ -81,8 +88,26 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    //public void StartGame()
-    //{
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    //}
-}
+    public void BalloonFlight()
+    {
+        float randomDirection = Random.Range(-1.0f, 1.0f);
+        Vector3 forceDir = new Vector3(randomDirection, 1, 0);
+        forceDir.Normalize();
+        Ball.transform.SetParent(null);
+        Ball.AddForce(forceDir * forceModefiler, ForceMode.VelocityChange);
+    }
+
+    public void StartGame()
+    {
+        if (!m_Started)
+        {
+            m_Started = true;
+            BalloonFlight();
+        }
+        else if (m_GameOver)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+    }
+//GameOverText.gameObject.SetActive(false);

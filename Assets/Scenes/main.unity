@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 110829973}
   - component: {fileID: 110829972}
   - component: {fileID: 110829971}
+  - component: {fileID: 110829974}
   m_Layer: 5
   m_Name: Button Start Game
   m_TagString: Untagged
@@ -287,7 +288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -55}
+  m_AnchoredPosition: {x: 0, y: -60}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &110829971
@@ -333,7 +334,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 110829972}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 110829974}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &110829972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,6 +385,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110829969}
   m_CullTransparentMesh: 1
+--- !u!114 &110829974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110829969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d110623a642692246a42fbc2d8d89884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LineCount: 6
+  Ball: {fileID: 177912862}
+  ScoreText: {fileID: 188020406}
+  GameOverText: {fileID: 474497238}
+  _brickPrefab: {fileID: 897975713663390409, guid: 63f25b9733d2bcd4fa2ff6de1264c739, type: 3}
+  _lineLength: 4
+  startFirstLinePosition: {x: -1.5, y: 2, z: 0}
+  ButtonStartGame: {fileID: 110829971}
+  ButtonMenu: {fileID: 2084458632}
 --- !u!1 &177912857
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,8 +571,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -60}
-  m_SizeDelta: {x: 600, y: 60}
+  m_AnchoredPosition: {x: 0, y: -65}
+  m_SizeDelta: {x: 600, y: 40}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &188020406
 MonoBehaviour:
@@ -632,6 +666,8 @@ MonoBehaviour:
   _brickPrefab: {fileID: 897975713663390409, guid: 63f25b9733d2bcd4fa2ff6de1264c739, type: 3}
   _lineLength: 4
   startFirstLinePosition: {x: -1.5, y: 2, z: 0}
+  ButtonStartGame: {fileID: 110829971}
+  ButtonMenu: {fileID: 2084458632}
 --- !u!1 &455529321
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 450625940}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &455529324
@@ -732,8 +768,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 100}
+  m_AnchoredPosition: {x: 0, y: 90}
+  m_SizeDelta: {x: 500, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &474497240
 MonoBehaviour:
@@ -748,7 +784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9811321, g: 0.032395888, b: 0.032395888, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -768,9 +804,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'GAME OVER
-
-    Press Space to Restart'
+  m_Text: GAME OVER
 --- !u!222 &474497241
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1717,8 +1751,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 40}
+  m_AnchoredPosition: {x: 0, y: -40}
+  m_SizeDelta: {x: 600, y: 30}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2078529056
 MonoBehaviour:
@@ -1774,6 +1808,7 @@ GameObject:
   - component: {fileID: 2084458634}
   - component: {fileID: 2084458633}
   - component: {fileID: 2084458632}
+  - component: {fileID: 2084458635}
   m_Layer: 5
   m_Name: Button Menu
   m_TagString: Untagged
@@ -1845,7 +1880,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2084458635}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Menu
         m_Mode: 1
@@ -1895,6 +1930,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084458630}
   m_CullTransparentMesh: 1
+--- !u!114 &2084458635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084458630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d110623a642692246a42fbc2d8d89884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LineCount: 6
+  Ball: {fileID: 177912862}
+  ScoreText: {fileID: 188020406}
+  GameOverText: {fileID: 474497238}
+  _brickPrefab: {fileID: 897975713663390409, guid: 63f25b9733d2bcd4fa2ff6de1264c739, type: 3}
+  _lineLength: 4
+  startFirstLinePosition: {x: -1.5, y: 2, z: 0}
+  ButtonStartGame: {fileID: 110829971}
+  ButtonMenu: {fileID: 2084458632}
 --- !u!1 &2137539494
 GameObject:
   m_ObjectHideFlags: 0
