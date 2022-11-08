@@ -23,69 +23,20 @@ public class GameManager : MonoBehaviour
 
     const float step = 0.6f;
 
-    public Button ButtonStartGame;
-    public Button ButtonMenu;
-
-
     private void Start()
     {
         CreateField();
-
     }
 
-    private void Update()
-    {
-        HideButtons();
-    }
+    //private void Update()
+    //{
 
-    public void HideButtons()
-    {
-        if (m_Started == true & m_Points == 0)
-        {
-            ButtonStartGame.gameObject.SetActive(false);
-            ButtonMenu.gameObject.SetActive(false);
-        }
-
-        if (m_GameOver == true & m_Points > 0)
-        {
-            ButtonStartGame.gameObject.SetActive(true);
-            ButtonMenu.gameObject.SetActive(true);
-        }
-    }
-
-    public void CreateField()
-    {
-        int perLine = Mathf.FloorToInt(_lineLength / step);
-
-        int[] pointCountArray = new[] { 1, 1, 2, 2, 5, 5 };
-        for (int i = 0; i < LineCount; ++i)
-        {
-            for (int x = 0; x < perLine; ++x)
-            {
-                Vector3 position = startFirstLinePosition + new Vector3(step * x, i * lineStep, 0);
-                var brick = Instantiate(_brickPrefab, position, Quaternion.identity);
-                brick.PointValue = pointCountArray[i];
-                brick.onDestroyed.AddListener(AddPoint);
-            }
-        }
-    }
-
+    //}
 
     public void AddPoint(int point)
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
-    }
-
-    public void GameOver()
-    {
-        m_GameOver = true;
-        GameOverText.SetActive(true);
-    }
-
-    public void Menu()
-    {
-        SceneManager.LoadScene(1);
     }
 
     public void BalloonFlight()
@@ -95,6 +46,12 @@ public class GameManager : MonoBehaviour
         forceDir.Normalize();
         Ball.transform.SetParent(null);
         Ball.AddForce(forceDir * forceModefiler, ForceMode.VelocityChange);
+    }
+
+    public void GameOver()
+    {
+        m_GameOver = true;
+        GameOverText.SetActive(true);
     }
 
     public void StartGame()
@@ -109,5 +66,21 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+
+    public void CreateField()
+    {
+        int perLine = Mathf.FloorToInt(_lineLength / step);
+        int[] pointCountArray = new[] { 1, 1, 2, 2, 5, 5 };
+        for (int i = 0; i < LineCount; ++i)
+        {
+            for (int x = 0; x < perLine; ++x)
+            {
+                Vector3 position = startFirstLinePosition + new Vector3(step * x, i * lineStep, 0);
+                var brick = Instantiate(_brickPrefab, position, Quaternion.identity);
+                brick.PointValue = pointCountArray[i];
+                brick.onDestroyed.AddListener(AddPoint);
+            }
+        }
     }
-//GameOverText.gameObject.SetActive(false);
+
+}

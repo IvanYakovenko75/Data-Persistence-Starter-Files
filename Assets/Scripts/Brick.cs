@@ -37,8 +37,8 @@ public class Brick : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         onDestroyed.Invoke(PointValue);
-        
-        //slight delay to be sure the ball have time to bounce
+
+        //небольша€ задержка, чтобы м€ч успел отскочить
         Destroy(gameObject, _delayTime);
     }
 }

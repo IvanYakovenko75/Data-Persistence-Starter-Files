@@ -5,16 +5,12 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using UnityEngine.UI;
 
-public class LeaderBoard : MonoBehaviour
+public class UiManager : MonoBehaviour
 {
 
-    void Start()
+
+    public void Quit()
     {
-
-    }
-
-    private void Update()
-    {
-
+        Application.Quit();
     }
 }

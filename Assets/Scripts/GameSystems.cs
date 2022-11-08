@@ -8,6 +8,7 @@ public class GameSystems : MonoBehaviour
     public static GameSystems Instance;
 
     public int PlayerScore { get; set; }
+    
 
     void  Awake()
     {
@@ -24,12 +25,9 @@ public class GameSystems : MonoBehaviour
 
     }
 
-
     void Start()
     {
         SceneManager.LoadScene(GameScenes.LevelScene);
     }
-
-
 
 }
