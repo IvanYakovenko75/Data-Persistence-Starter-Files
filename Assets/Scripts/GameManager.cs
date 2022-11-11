@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Rigidbody Ball;
     public Text ScoreText;
     public GameObject GameOverText;
+    public GameObject StartMenuDialog;
 
     [SerializeField] private Brick _brickPrefab;
     [SerializeField] private float _lineLength = 4f;
@@ -52,6 +53,8 @@ public class GameManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        StartMenuDialog.SetActive(true);
+        //m_Started = false;
     }
 
     public void StartGame()
