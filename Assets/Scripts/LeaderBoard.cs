@@ -17,4 +17,9 @@ public class LeaderBoard : MonoBehaviour
     {
 
     }
+
+    public void ReturnGame()
+    {
+        SceneManager.LoadScene(1);
+    }
 }

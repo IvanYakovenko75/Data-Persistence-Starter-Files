@@ -29,34 +29,6 @@ public class GameManager : MonoBehaviour
         CreateField();
     }
 
-    //private void Update()
-    //{
-
-    //}
-
-    public void AddPoint(int point)
-    {
-        m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
-    }
-
-    public void BalloonFlight()
-    {
-        float randomDirection = Random.Range(-1.0f, 1.0f);
-        Vector3 forceDir = new Vector3(randomDirection, 1, 0);
-        forceDir.Normalize();
-        Ball.transform.SetParent(null);
-        Ball.AddForce(forceDir * forceModefiler, ForceMode.VelocityChange);
-    }
-
-    public void GameOver()
-    {
-        m_GameOver = true;
-        GameOverText.SetActive(true);
-        StartMenuDialog.SetActive(true);
-        //m_Started = false;
-    }
-
     public void StartGame()
     {
         if (!m_Started)
@@ -68,6 +40,21 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
+
+    public void BalloonFlight()
+    {
+        float randomDirection = Random.Range(-1.0f, 1.0f);
+        Vector3 forceDir = new Vector3(randomDirection, 1, 0);
+        forceDir.Normalize();
+        Ball.transform.SetParent(null);
+        Ball.AddForce(forceDir * forceModefiler, ForceMode.VelocityChange);
+    }
+
+    public void AddPoint(int point)
+    {
+        m_Points += point;
+        ScoreText.text = $"Score : {m_Points}";
     }
 
     public void CreateField()
@@ -85,5 +72,10 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    public void GameOver()
+    {
+        m_GameOver = true;
+        GameOverText.SetActive(true);
+        StartMenuDialog.SetActive(true);
+    }
 }
